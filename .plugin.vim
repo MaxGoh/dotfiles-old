@@ -16,6 +16,17 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'valloric/youcompleteme'
 Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ervandew/supertab'
+
+" Snippets
+Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+
+" Indent
+Plug 'nathanaelkane/vim-indent-guides'
+
 
 " Python
 Plug 'klen/python-mode'
@@ -48,6 +59,14 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map <C-n> :NERDTreeTabsToggle<CR>
 
 """"""""""""""""""""""""""""""""""""
+" Airline
+""""""""""""""""""""""""""""""""""""
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+
+""""""""""""""""""""""""""""""""""""
 " CtrlP
 """"""""""""""""""""""""""""""""""""
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
@@ -73,5 +92,21 @@ let g:jedi#show_call_signatures = "1"
 let g:pymode_python = 'python3'
 
 """"""""""""""""""""""""""""""""""""
-" Neomake
+" Indent Guide
 """"""""""""""""""""""""""""""""""""
+"let g:indent_guides_enable_on_vim_startup = 1
+
+
+""""""""""""""""""""""""""""""""""""
+" Autocompletion / Snippets
+""""""""""""""""""""""""""""""""""""
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+

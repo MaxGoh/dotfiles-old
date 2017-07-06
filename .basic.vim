@@ -56,8 +56,8 @@ set lazyredraw          " redraw only when we need to.
 set showmatch           " highlight matching [{()}]
 
 " Clipboard
-set paste
-set pastetoggle=<F2>
+"set paste
+"set pastetoggle=<F2>
 set mouse=a
 set clipboard=unnamed   " Register clipboard to share copy and paste with system's clipboard
 
@@ -73,3 +73,5 @@ map <leader>wq :wq<CR>
 map <leader>wqa :wqa<CR>
 map <leader>q :q<CR>
 map <leader>qa :qa<CR>
+
+set noswapfile

@@ -4,7 +4,7 @@ set nocompatible        " don't use old settings that vi used.
 " Line Number
 set number
 set rnu
-set cursorline          " highlight current line
+"set cursorline          " highlight current line
 
 " Syntax
 syntax enable
@@ -59,4 +59,9 @@ set pastetoggle=<F2>
 set mouse=a
 set clipboard=unnamed   " Register clipboard to share copy and paste with system's clipboard
 
+" Tab Control
+nnoremap tt  :tabnew<CR>
+nnoremap tl  :tabnext<CR>
+nnoremap th  :tabprev<CR>
+nnoremap tc  :tabclose<CR>
 

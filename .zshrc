@@ -84,19 +84,19 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# alias vim="vim"
+alias vim="nvim"
 
 export VIMPLUGIN="~/.plugin.vim"
 export VIMBASIC="~/.basic.vim"
 
-alias ez="vim ~/.zshrc"
-alias ev="vim ~/.vimrc"
-alias eb="vim ~/.basic.vim"
-alias ep="vim ~/.plugin.vim"
-alias el="vim ~/.language.vim"
+alias ez="nvim ~/.zshrc"
+alias ev="nvim ~/.vimrc"
+alias eb="nvim ~/.basic.vim"
+alias ep="nvim ~/.plugin.vim"
+alias el="nvim ~/.language.vim"
 
-alias es="vim ~/.ssh/config"
-alias et="vim ~/.tmux.conf"
+alias es="nvim ~/.ssh/config"
+alias et="nvim ~/.tmux.conf"
 
 alias st="tmux source-file ~/.tmux.conf"
 

@@ -86,6 +86,9 @@ source $ZSH/oh-my-zsh.sh
 
 # alias vim="vim"
 
+export VIMPLUGIN="~/.plugin.vim"
+export VIMBASIC="~/.basic.vim"
+
 alias ez="vim ~/.zshrc"
 alias ev="vim ~/.vimrc"
 alias eb="vim ~/.basic.vim"
@@ -113,3 +116,4 @@ export ANDROID_HOME="/Users/pickandmix/Library/android/sdk"
 
 # Ionic
 alias config='/usr/bin/git --git-dir=/Users/pickandmix/.cfg/ --work-tree=/Users/pickandmix'
+

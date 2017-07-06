@@ -48,6 +48,8 @@ set showmode        	" display the current mode
 
 set showcmd             " show command in bottom bar
 
+filetype on
+filetype plugin indent on
 filetype indent on      " load filetype-specific indent files
 set wildmenu            " visual autocomplete for command menu
 set lazyredraw          " redraw only when we need to.
@@ -65,3 +67,9 @@ nnoremap tl  :tabnext<CR>
 nnoremap th  :tabprev<CR>
 nnoremap tc  :tabclose<CR>
 
+" Saving
+map <leader>w :w<CR>
+map <leader>wq :wq<CR>
+map <leader>wqa :wqa<CR>
+map <leader>q :q<CR>
+map <leader>qa :qa<CR>

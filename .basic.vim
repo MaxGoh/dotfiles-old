@@ -75,3 +75,6 @@ map <leader>q :q<CR>
 map <leader>qa :qa<CR>
 
 set noswapfile
+set encoding=utf8
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types:h11
+

@@ -19,6 +19,30 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ervandew/supertab'
+Plug 'ryanoasis/vim-devicons'
+Plug 'flazz/vim-colorschemes'
+Plug 'majutsushi/tagbar'
+Plug 'mattn/emmet-vim'
+Plug 'mileszs/ack.vim'           " Read up
+Plug 'raimondi/delimitmate'
+Plug 'rking/ag.vim'              " Read up
+Plug 'tpope/vim-sensible'
+Plug 'octref/rootignore'
+Plug 'junegunn/vim-easy-align'   " Read up
+Plug 'roxma/vim-paste-easy'      " Might not need this
+Plug 'vim-scripts/a.vim'         " Seems to be for C
+
+
+" TMUX
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'benmills/vimux'
+Plug 'xuyuanp/nerdtree-git-plugin'
+ 
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
+Plug 'gregsexton/gitv'
 
 " Snippets
 Plug 'honza/vim-snippets'
@@ -33,14 +57,20 @@ Plug 'klen/python-mode'
 Plug 'davidhalter/jedi-vim'
 Plug 'vheon/jedihttp'
 Plug 'nvie/vim-flake8'
+Plug 'tmhedberg/simpylfold'
+Plug 'jmcantrell/vim-virtualenv'
+
+" Javascript
+Plug 'marijnh/tern_for_vim'
 
 " Linter
 Plug 'w0rp/ale'
 
+" Syntax
+Plug 'elzr/vim-json'
 
 " Initialize plugin system
 call plug#end()
-
 
 """"""""""""""""""""""""""""""""""""
 " Vim Plug Shortcuts
@@ -58,13 +88,27 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 map <C-n> :NERDTreeTabsToggle<CR>
 
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
 """"""""""""""""""""""""""""""""""""
 " Airline
 """"""""""""""""""""""""""""""""""""
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'minimalist'
 
 """"""""""""""""""""""""""""""""""""
 " CtrlP
@@ -110,3 +154,55 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
+
+""""""""""""""""""""""""""""""""""""
+" Vim Fugitive
+""""""""""""""""""""""""""""""""""""
+autocmd QuickFixCmdPost *grep* cwindow
+
+colorscheme blacksea
+set background=dark
+
+""""""""""""""""""""""""""""""""""""
+" GitGutter 
+""""""""""""""""""""""""""""""""""""
+
+let g:gitgutter_sign_column_always =  1
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
+
+let g:gitgutter_sign_added = 'xx'
+let g:gitgutter_sign_modified = 'yy'
+let g:gitgutter_sign_removed = 'zz'
+let g:gitgutter_sign_removed_first_line = '^^'
+let g:gitgutter_sign_modified_removed = 'ww'
+
+""""""""""""""""""""""""""""""""""""
+" TagBar
+""""""""""""""""""""""""""""""""""""
+nmap <C-c> :TagbarToggle<CR>
+
+
+""""""""""""""""""""""""""""""""""""
+" Emmet
+""""""""""""""""""""""""""""""""""""
+let g:user_emmet_install_global = 0
+autocmd FileType html,css,ts,js,jsx EmmetInstall
+
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+
+""""""""""""""""""""""""""""""""""""
+" Gitv
+""""""""""""""""""""""""""""""""""""
+nmap <leader>gv :Gitv<CR>
+
+""""""""""""""""""""""""""""""""""""
+" SimpylFold
+""""""""""""""""""""""""""""""""""""
+let g:SimpylFold_docstring_preview = 1     " Preview Docstring

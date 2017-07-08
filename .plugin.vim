@@ -1,4 +1,4 @@
-"if empty(glob('~/.config/nvim/autoload/plug.vim'))
+"iMGf empty(glob('~/.config/nvim/autoload/plug.vim'))
 "  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
 "	  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -31,18 +31,33 @@ Plug 'octref/rootignore'
 Plug 'junegunn/vim-easy-align'   " Read up
 Plug 'roxma/vim-paste-easy'      " Might not need this
 Plug 'vim-scripts/a.vim'         " Seems to be for C
+Plug 'scrooloose/nerdcommenter'
+Plug 'easymotion/vim-easymotion'
+Plug 'yggdroot/indentline'
+Plug 'sjl/gundo.vim'
+Plug 'pseewald/nerdtree-tagbar-combined'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'universal-ctags/ctags'
 
+" Typescript
+Plug 'quramy/tsuquyomi'
+Plug 'leafgarland/typescript-vim'
+Plug 'akz92/vim-ionic2'
+Plug 'herringtondarkholme/yats.vim'
 
 " TMUX
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
-Plug 'xuyuanp/nerdtree-git-plugin'
- 
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'roxma/vim-tmux-clipboard'
+
 " Git
+Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'gregsexton/gitv'
+Plug 'cohama/agit.vim'
 
 " Snippets
 Plug 'honza/vim-snippets'
@@ -51,7 +66,6 @@ Plug 'SirVer/ultisnips'
 " Indent
 Plug 'nathanaelkane/vim-indent-guides'
 
-
 " Python
 Plug 'klen/python-mode'
 Plug 'davidhalter/jedi-vim'
@@ -59,15 +73,37 @@ Plug 'vheon/jedihttp'
 Plug 'nvie/vim-flake8'
 Plug 'tmhedberg/simpylfold'
 Plug 'jmcantrell/vim-virtualenv'
+Plug 'vim-scripts/pylint.vim'
+Plug 'hdima/python-syntax'
+Plug 'python-rope/ropevim'
 
 " Javascript
 Plug 'marijnh/tern_for_vim'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'nono/jquery.vim'
+Plug 'isruslan/vim-es6'
+Plug 'hushicai/tagbar-javascript.vim'
 
 " Linter
 Plug 'w0rp/ale'
 
 " Syntax
 Plug 'elzr/vim-json'
+Plug 'stephpy/vim-yaml'
+Plug 'wolfgangmehner/vim-support'
+
+" Docker
+Plug 'ekalinin/dockerfile.vim'
+
+" HTML
+Plug 'othree/html5.vim'
+
+" CSS
+Plug 'hail2u/vim-css3-syntax'
+Plug 'cakebaker/scss-syntax.vim'
+
+" Bash
+Plug 'vim-scripts/bash-support.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -85,8 +121,9 @@ map <leader>c :PlugClean<CR>
 
 " Close NERDTree when it's the only window left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeWinPos = "right"
 
-map <C-n> :NERDTreeTabsToggle<CR>
+map <C-n> :ToggleNERDTreeAndTagbar<CR>
 
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
@@ -206,3 +243,27 @@ nmap <leader>gv :Gitv<CR>
 " SimpylFold
 """"""""""""""""""""""""""""""""""""
 let g:SimpylFold_docstring_preview = 1     " Preview Docstring
+
+let g:indentLine_char = 'c'
+let g:indentLine_concealcursor = 'inc'
+let g:indentLine_conceallevel = 0
+let g:indentLine_enabled = 1
+
+""""""""""""""""""""""""""""""""""""
+" Tsuquyomi
+""""""""""""""""""""""""""""""""""""
+
+let g:tsuquyomi_completion_detail = 1
+autocmd FileType typescript setlocal completeopt+=menu,preview
+
+""""""""""""""""""""""""""""""""""""
+" Gundo
+""""""""""""""""""""""""""""""""""""
+ nnoremap <F5> :GundoToggle<CR>
+
+nmap <F3> :ToggleNERDTreeAndTagbar<CR>
+"autocmd FileType python map <buffer> <F3> :call Flake8()<CR>
+
+let g:tagbar_ctags_bin='/usr/local/bin/ctags'  " Proper Ctags locations
+let g:tagbar_width=26                          " Default is 40, seems too wide
+"let g:tagbar_ctags_bin='/usr/local/Cellar/ctags/5.8_1'

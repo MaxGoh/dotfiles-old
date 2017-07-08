@@ -116,4 +116,10 @@ export ANDROID_HOME="/Users/pickandmix/Library/android/sdk"
 
 # Ionic
 alias config='/usr/bin/git --git-dir=/Users/pickandmix/.cfg/ --work-tree=/Users/pickandmix'
+export PATH="$HOME/.fastlane/bin:$PATH"
 
+if [ -z $TMUX ]; then; tmux; fi
+
+export WORKON_HOME=~/Envs
+source /usr/local/bin/virtualenvwrapper.sh
+source /usr/local/opt/autoenv/activate.sh

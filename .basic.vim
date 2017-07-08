@@ -59,7 +59,7 @@ set showmatch           " highlight matching [{()}]
 "set paste
 "set pastetoggle=<F2>
 set mouse=a
-set clipboard=unnamed   " Register clipboard to share copy and paste with system's clipboard
+set clipboard=unnamedplus   " Register clipboard to share copy and paste with system's clipboard
 
 " Tab Control
 nnoremap tt  :tabnew<CR>
@@ -77,4 +77,26 @@ map <leader>qa :qa<CR>
 set noswapfile
 set encoding=utf8
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types:h11
+
+" give us nice EOL (end of line) characters
+set list
+"set listchars=tab:▸\ ,eol:¬
+
+set nowrap        " don't wrap lines
+set tabstop=4     " a tab is four spaces
+set backspace=indent,eol,start
+                    " allow backspacing over everything in insert mode
+set autoindent    " always set autoindenting on
+set copyindent    " copy the previous indentation on autoindenting
+set number        " always show line numbers
+set shiftwidth=4  " number of spaces to use for autoindenting
+set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
+set showmatch     " set show matching parenthesis
+set ignorecase    " ignore case when searching
+set smartcase     " ignore case if search pattern is all lowercase,
+                    "    case-sensitive otherwise
+set smarttab      " insert tabs on the start of a line according to
+                    "    shiftwidth, not tabstop
+set hlsearch      " highlight search terms
+set incsearch     " show search matches as you type
 

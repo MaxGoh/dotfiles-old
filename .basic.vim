@@ -66,6 +66,8 @@ nnoremap tt  :tabnew<CR>
 nnoremap tl  :tabnext<CR>
 nnoremap th  :tabprev<CR>
 nnoremap tc  :tabclose<CR>
+"nnoremap tf  :tabfirst<CR>
+"nnoremap tf  :tablast<CR>
 
 " Saving
 map <leader>w :w<CR>

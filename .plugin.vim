@@ -4,7 +4,6 @@
 "  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 "endif
 
-
 " Specify a directory for plugins
 " - For Neovim: 
 " - Avoid using standard Vim directory names like 'plugin'
@@ -19,7 +18,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ervandew/supertab'
-Plug 'ryanoasis/vim-devicons'
+"Plug 'ryanoasis/vim-devicons'
 Plug 'flazz/vim-colorschemes'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
@@ -29,21 +28,21 @@ Plug 'rking/ag.vim'              " Read up
 Plug 'tpope/vim-sensible'
 Plug 'octref/rootignore'
 Plug 'junegunn/vim-easy-align'   " Read up
-Plug 'roxma/vim-paste-easy'      " Might not need this
-Plug 'vim-scripts/a.vim'         " Seems to be for C
+"Plug 'vim-scripts/a.vim'         " Seems to be for C
 Plug 'scrooloose/nerdcommenter'
 Plug 'easymotion/vim-easymotion'
 Plug 'yggdroot/indentline'
 Plug 'sjl/gundo.vim'
 Plug 'pseewald/nerdtree-tagbar-combined'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'universal-ctags/ctags'
+Plug 'cakebaker/scss-syntax.vim'
+
 
 " Typescript
 Plug 'quramy/tsuquyomi'
 Plug 'leafgarland/typescript-vim'
 Plug 'akz92/vim-ionic2'
-Plug 'herringtondarkholme/yats.vim'
+"Plug 'herringtondarkholme/yats.vim'
 
 " TMUX
 Plug 'christoomey/vim-tmux-navigator'
@@ -85,7 +84,8 @@ Plug 'isruslan/vim-es6'
 Plug 'hushicai/tagbar-javascript.vim'
 
 " Linter
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
+"Plug 'neomake/neomake'
 
 " Syntax
 Plug 'elzr/vim-json'
@@ -123,7 +123,9 @@ map <leader>c :PlugClean<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeWinPos = "right"
 
-map <C-n> :ToggleNERDTreeAndTagbar<CR>
+map <C-n> :NERDTreeToggle<CR>
+map <leader>m :NERDTreeFocusToggle<CR>
+"map <C-n> :ToggleNERDTreeAndTagbar<CR>
 
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
@@ -256,6 +258,40 @@ let g:indentLine_enabled = 1
 let g:tsuquyomi_completion_detail = 1
 autocmd FileType typescript setlocal completeopt+=menu,preview
 
+let g:tagbar_type_typescript = {                                                  
+  \ 'ctagsbin' : 'tstags',                                                        
+  \ 'ctagsargs' : '-f-',                                                           
+  \ 'kinds': [                                                                     
+    \ 'e:enums:0:1',                                                               
+    \ 'f:function:0:1',                                                            
+    \ 't:typealias:0:1',                                                           
+    \ 'M:Module:0:1',                                                              
+    \ 'I:import:0:1',                                                              
+    \ 'i:interface:0:1',                                                           
+    \ 'C:class:0:1',                                                               
+    \ 'm:method:0:1',                                                              
+    \ 'p:property:0:1',                                                            
+    \ 'v:variable:0:1',                                                            
+    \ 'c:const:0:1',                                                              
+  \ ],                                                                            
+  \ 'sort' : 0                                                                    
+\ }                                                                               
+
+let g:tagbar_type_typescript = {
+  \ 'ctagstype': 'typescript',
+  \ 'kinds': [
+    \ 'c:classes',
+    \ 'n:modules',
+    \ 'f:functions',
+    \ 'v:variables',
+    \ 'v:varlambdas',
+    \ 'm:members',
+    \ 'i:interfaces',
+    \ 'e:enums',
+  \ ]
+\ }
+
+
 """"""""""""""""""""""""""""""""""""
 " Gundo
 """"""""""""""""""""""""""""""""""""
@@ -267,3 +303,6 @@ nmap <F3> :ToggleNERDTreeAndTagbar<CR>
 let g:tagbar_ctags_bin='/usr/local/bin/ctags'  " Proper Ctags locations
 let g:tagbar_width=26                          " Default is 40, seems too wide
 "let g:tagbar_ctags_bin='/usr/local/Cellar/ctags/5.8_1'
+
+"autocmd! BufWritePost * Neomake
+hi SpellBad ctermbg=1 guibg=DarkRed

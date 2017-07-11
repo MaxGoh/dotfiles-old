@@ -99,6 +99,7 @@ alias es="nvim ~/.ssh/config"
 alias et="nvim ~/.tmux.conf"
 
 alias st="tmux source-file ~/.tmux.conf"
+alias logvim="vim -V20vimlog"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -123,3 +124,5 @@ if [ -z $TMUX ]; then; tmux; fi
 export WORKON_HOME=~/Envs
 source /usr/local/bin/virtualenvwrapper.sh
 source /usr/local/opt/autoenv/activate.sh
+alias chinab='nc -nlvp 1337'
+

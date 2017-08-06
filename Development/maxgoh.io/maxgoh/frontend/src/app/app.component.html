@@ -1,0 +1,34 @@
+<app-menu *ngIf="_menu.menuToggle"></app-menu>
+
+<header>
+  <nav class="nav navbar-custom">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" (click)="toggleMenu()">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" routerLink="/">Max Goh.</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="padding">
+  <router-outlet></router-outlet>
+</div>
+
+<footer class="footer container visible-xs visible-sm">
+  <div class="footer-table">
+    <a href="https://twitter.com/intent/follow?screen_name=themaxgoh" style="color: #268CCD;" class="social-media-icon footer-element fa fa-twitter" aria-hidden="true" target="_blank"></a>
+    <a href="https://github.com/maxgoh" style="color: #333;" class="social-media-icon footer-element fa fa-github" aria-hidden="true" target="_blank"></a>
+    <a href="https://linkedin.com/in/maxgohjh" style="color: #3b5998;" class="social-media-icon footer-element fa fa-linkedin" aria-hidden="true" target="_blank"></a>
+    <a href="https://www.instagram.com/maxgohjh/" style="color: #e1306c;" class="social-media-icon footer-element fa fa-instagram" aria-hidden="true" target="_blank"></a>
+    <a href="https://stackoverflow.com/users/8323423/max-goh" style="color: #f48024;" class="social-media-icon footer-element fa fa-stack-overflow" aria-hidden="true" target="_blank"></a>
+    <span class="footer-element">Copyright © 2017 Max Goh</span>
+  </div>
+</footer>
+

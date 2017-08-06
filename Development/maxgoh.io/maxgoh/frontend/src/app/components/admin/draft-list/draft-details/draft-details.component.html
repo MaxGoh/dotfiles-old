@@ -1,0 +1,33 @@
+<div class="container" *ngIf="draft">
+
+  <div class="page-header">
+    <h1 class="text-center">{{ draft.title }}</h1>
+  </div>
+
+  <div class="container row text-left">
+    <div class="row container">
+      <div class="btn-group">
+        <button type="button" class="btn btn-danger">Publish</button>
+        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a [routerLink]="['/admin/edit', draft.id]">Edit</a></li>
+          <!-- <li><a href="#">Another action</a></li> -->
+          <li role="separator" class="divider"></li>
+          <li><a routerLink="/admin/draft">Back</a></li>
+        </ul>
+      </div>
+    </div>
+    <br>
+    <div class="row container">
+      Last updated on {{ draft.last_updated }}
+    </div>
+  </div>
+
+  <br>
+
+  <div [innerHTML]="draft.body|MarkdownToHtml"></div>
+
+</div>

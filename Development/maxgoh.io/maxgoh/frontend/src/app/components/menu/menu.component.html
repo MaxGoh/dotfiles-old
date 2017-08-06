@@ -1,0 +1,31 @@
+<div class="menu">
+
+  <header class="flex-1">
+  <nav class="nav navbar-custom">
+    <!--<h1 class="text-center top-margin"><b>Max Goh</b></h1>-->
+  </nav>
+</header>
+
+  <div class="container flex-3">
+    <ul class="text-center remove-dot">
+      <li>
+        <a (click)="goToProject()"><h4>Projects</h4></a>
+        <a (click)="goToBlog()"><h4>Blog</h4></a>
+        <a (click)="goToChallenges()"><h4>Challenges</h4></a>
+        <a (click)="goToMemories()"><h4>Memories</h4></a>
+        <a *ngIf="isLoggedIn" (click)="goToLogin()"><h4>Login</h4></a>
+        <a *ngIf="!isLoggedIn" (click)="goToAdmin()"><h4>Admin Panel</h4></a>
+      </li>
+    </ul>
+    <ul class="inline-list remove-dot text-center">
+      <li><a href="https://github.com/maxgoh"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+      <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+      <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+    </ul>
+  </div>
+
+  <footer class="text-center">
+    <span>Copyright © 2017 Max Goh</span>
+  </footer>
+
+</div>

@@ -1,0 +1,28 @@
+ul.tags {
+  list-style: none;
+  list-style-image: none;
+  line-height: 35px;
+}
+
+li.tag {
+  border: none;
+  color: rgba(0,0,0,.6);
+  background: rgba(0,0,0,.05);
+  display: inline;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  width: 100%;
+  font-size: 1.1rem;
+}
+
+li.tag:hover {
+  background: rgba(0,0,0,.15);
+}
+
+li.list-tag {
+  @extend li.tag;
+  font-size: 1rem !important;
+  border: none !important;
+}

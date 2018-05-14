@@ -1,7 +1,9 @@
-"iMGf empty(glob('~/.config/nvim/autoload/plug.vim'))
+let g:airline#highlighter#normal_fg_hi = 7
+
+"iMGf empty(glob('Go~/.config/nvim/autoload/plug.vim'))
 "  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
 "	  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"sync  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 "endif
 
 " Specify a directory for plugins
@@ -10,6 +12,7 @@
 " call plug#begin('~/.vim/plugged')
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -18,13 +21,12 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ervandew/supertab'
-"Plug 'ryanoasis/vim-devicons'
 Plug 'flazz/vim-colorschemes'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'mileszs/ack.vim'           " Read up
 Plug 'raimondi/delimitmate'
-Plug 'rking/ag.vim'              " Read up
+"Plug 'rking/ag.vim'              " Read up
 Plug 'tpope/vim-sensible'
 Plug 'octref/rootignore'
 Plug 'junegunn/vim-easy-align'   " Read up
@@ -33,10 +35,17 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'easymotion/vim-easymotion'
 Plug 'yggdroot/indentline'
 Plug 'sjl/gundo.vim'
-Plug 'pseewald/nerdtree-tagbar-combined'
+"Plug 'pseewald/nerdtree-tagbar-combined'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'cakebaker/scss-syntax.vim'
-
+Plug 'keith/travis.vim'
+Plug 'tpope/vim-rhubarb'
+Plug 'justinj/vim-react-snippets'
+Plug 'ryanoasis/vim-devicons'
+Plug 'skwp/greplace.vim'
+Plug 'jeetsukumaran/vim-buffergator'
+"Plug 'fweep/vim-tabber'
+Plug 'gcmt/taboo.vim'  " May break airline tabline
 
 " Typescript
 Plug 'quramy/tsuquyomi'
@@ -62,29 +71,49 @@ Plug 'cohama/agit.vim'
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 
+" Markdown
+Plug 'plasticboy/vim-markdown'
+
 " Indent
-Plug 'nathanaelkane/vim-indent-guides'
+"Plug 'nathanaelkane/vim-indent-guides'
 
 " Python
 Plug 'klen/python-mode'
 Plug 'davidhalter/jedi-vim'
 Plug 'vheon/jedihttp'
 Plug 'nvie/vim-flake8'
-Plug 'tmhedberg/simpylfold'
+"Plug 'tmhedberg/simpylfold'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'vim-scripts/pylint.vim'
 Plug 'hdima/python-syntax'
 Plug 'python-rope/ropevim'
+"Plug 'vim-scripts/django.vim'
+Plug 'mitsuhiko/flask'
 
 " Javascript
-Plug 'marijnh/tern_for_vim'
 Plug 'jelera/vim-javascript-syntax'
+Plug 'heavenshell/vim-jsdoc'
+Plug 'pangloss/vim-javascript'
+"Plug 'Wolfy87/vim-syntax-expand'
 Plug 'nono/jquery.vim'
 Plug 'isruslan/vim-es6'
+Plug 'mxw/vim-jsx'
+Plug 'jb55/typescript-ctags'
+Plug 'evilpie/jsctags'
+"Plug 'Quramy/vim-js-pretty-template'
+"Plug 'marijnh/tern_for_vim'
+Plug 'ianks/vim-tsx'
 Plug 'hushicai/tagbar-javascript.vim'
+"Plug 'tyok/js-mask'
+Plug 'maxmellon/vim-jsx-pretty'
+
+" Java
+Plug 'artur-shaik/vim-javacomplete2'
 
 " Linter
-"Plug 'w0rp/ale'
+Plug 'w0rp/ale'
+Plug 'skywind3000/asyncrun.vim'
+"Plug 'scrooloose/syntastic'
 "Plug 'neomake/neomake'
 
 " Syntax
@@ -97,13 +126,18 @@ Plug 'ekalinin/dockerfile.vim'
 
 " HTML
 Plug 'othree/html5.vim'
+Plug 'gregsexton/matchtag'
 
 " CSS
 Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
 
+Plug 'keith/swift.vim'
+Plug 'glench/vim-jinja2-syntax'
+Plug 'lepture/vim-jinja'
+
 " Bash
-Plug 'vim-scripts/bash-support.vim'
+"Plug 'vim-scripts/bash-support.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -123,9 +157,14 @@ map <leader>c :PlugClean<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeWinPos = "right"
 
-map <C-n> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeTabsToggle<CR>
 map <leader>m :NERDTreeFocusToggle<CR>
+let g:nerdtree_tabs_open_on_console_startup=1
 "map <C-n> :ToggleNERDTreeAndTagbar<CR>
+
+set hidden
+nnoremap <C-H> :bnext<CR>
+nnoremap <C-L> :bprev<CR>
 
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
@@ -140,14 +179,29 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
+"let NERDTreeIgnore = ['\.pyc$', '__pycache__'] " clean
+"let NERDTreeIgnore = ['\.pyc$', '__pycache__', 'public', 'node_modules', 'git', 'venv'] "focus
+let NERDTreeIgnore = ['\.pyc$', '__pycache__', 'node_modules', 'git', 'venv', '\.class$'] "focus
+let NERDTreeMinimalUI=1
+
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+
 """"""""""""""""""""""""""""""""""""
 " Airline
 """"""""""""""""""""""""""""""""""""
+set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#switch_buffers_and_tabs = 1
+
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'minimalist'
+let g:airline_theme = 'wombat'
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 """"""""""""""""""""""""""""""""""""
 " CtrlP
@@ -168,16 +222,19 @@ let g:ctrlp_custom_ignore = {
 """"""""""""""""""""""""""""""""""""
 let g:jedi#show_call_signatures = "1"
 "let g:ycm_server_python_interpreter = 'python2'
+let g:jedi#force_py_version = 3
 
 """"""""""""""""""""""""""""""""""""
 " Python-Mode
 """"""""""""""""""""""""""""""""""""
 let g:pymode_python = 'python3'
+let g:pymode_lint_checkers = ['pylint', 'pyflakes', 'pep8', 'mccabe']
+let g:pymode_rope_lookup_project = 0
 
 """"""""""""""""""""""""""""""""""""
 " Indent Guide
 """"""""""""""""""""""""""""""""""""
-"let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_enable_on_vim_startup = 1
 
 
 """"""""""""""""""""""""""""""""""""
@@ -199,14 +256,19 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 """"""""""""""""""""""""""""""""""""
 autocmd QuickFixCmdPost *grep* cwindow
 
-colorscheme blacksea
+"colorscheme blacksea
+"colorscheme distinguished
+"colorscheme monokai
+"colorscheme 0x7A69_dark
+colorscheme base 
+"colorscheme badwolf
 set background=dark
 
 """"""""""""""""""""""""""""""""""""
 " GitGutter 
 """"""""""""""""""""""""""""""""""""
 
-let g:gitgutter_sign_column_always =  1
+set signcolumn=yes
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 
@@ -246,10 +308,10 @@ nmap <leader>gv :Gitv<CR>
 """"""""""""""""""""""""""""""""""""
 let g:SimpylFold_docstring_preview = 1     " Preview Docstring
 
-let g:indentLine_char = 'c'
-let g:indentLine_concealcursor = 'inc'
-let g:indentLine_conceallevel = 0
-let g:indentLine_enabled = 1
+"let g:indentLine_char = 'c'
+"let g:indentLine_concealcursor = 'inc'
+"let g:indentLine_conceallevel = 0
+"let g:indentLine_enabled = 1
 
 """"""""""""""""""""""""""""""""""""
 " Tsuquyomi
@@ -291,12 +353,14 @@ let g:tagbar_type_typescript = {
   \ ]
 \ }
 
+autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
+let g:tsuquyomi_shortest_import_path = 1
+
 
 """"""""""""""""""""""""""""""""""""
 " Gundo
 """"""""""""""""""""""""""""""""""""
- nnoremap <F5> :GundoToggle<CR>
-
+nnoremap <F5> :GundoToggle<CR>
 nmap <F3> :ToggleNERDTreeAndTagbar<CR>
 "autocmd FileType python map <buffer> <F3> :call Flake8()<CR>
 
@@ -306,3 +370,104 @@ let g:tagbar_width=26                          " Default is 40, seems too wide
 
 "autocmd! BufWritePost * Neomake
 hi SpellBad ctermbg=1 guibg=DarkRed
+
+
+""""""""""""""""""""""""""""""""""""
+" React
+""""""""""""""""""""""""""""""""""""
+
+let g:jsx_ext_required = 1
+
+""""""""""""""""""""""""""""""""""""
+" Ale / Syntastic
+""""""""""""""""""""""""""""""""""""
+
+"let g:syntastic_javascript_checkers=['eslint']
+
+let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+let g:ale_sign_warning = '.'
+let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+
+let g:ale_fixers = [
+\ 'eslint',
+\ 'remove_trailing_lines',
+\ {buffer, lines -> filter(lines, 'v:val !=~ ''^\s*//''')},
+\]
+
+""""""""""""""""""""""""""""""""""""
+" CTRL-P
+""""""""""""""""""""""""""""""""""""
+
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
+""""""""""""""""""""""""""""""""""""
+" Javascript
+""""""""""""""""""""""""""""""""""""
+
+let g:javascript_plugin_jsdoc = 1
+"let g:jsdoc_allow_input_prompt = 1
+"let g:jsdoc_input_description = 1
+let g:jsdoc_underscore_private = 1
+let g:jsdoc_enable_es6 = 1
+
+"let g:javascript_conceal_function             = "ƒ"
+"let g:javascript_conceal_null                 = "ø"
+"let g:javascript_conceal_this                 = "@"
+"let g:javascript_conceal_return               = "⇚"
+"let g:javascript_conceal_undefined            = "¿"
+"let g:javascript_conceal_NaN                  = "ℕ"
+"let g:javascript_conceal_prototype            = "¶"
+"let g:javascript_conceal_static               = "•"
+"let g:javascript_conceal_super                = "Ω"
+"let g:javascript_conceal_arrow_function       = "⇒"
+
+" Map the conceal characters to their expanded forms (only for javascript files)
+"autocmd FileType javascript inoremap <silent> <buffer> @ <C-r>=syntax_expand#expand("@", "this")<CR>
+"autocmd FileType javascript inoremap <silent> <buffer> # <C-r>=syntax_expand#expand("#", ".prototype.")<CR>
+"autocmd FileType javascript inoremap <silent> <buffer> < <C-r>=syntax_expand#expand_head("<", "return")<CR>
+
+" Keeps everything concealed at all times. Even when my cursor is on the word.
+"set conceallevel=2
+"set concealcursor=nvic
+"set cole=2
+
+"autocmd FileType javascript html typescript
+
+""""""""""""""""""""""""""""""""""""
+" Taboo
+""""""""""""""""""""""""""""""""""""
+let g:taboo_tabline = 0
+
+""""""""""""""""""""""""""""""""""""
+" Buffergator
+""""""""""""""""""""""""""""""""""""
+let g:buffergator_viewport_split_policy = "B"
+
+""""""""""""""""""""""""""""""""""""
+" Ack
+""""""""""""""""""""""""""""""""""""
+" Force QuickFix Window to be at bottom
+augroup DragQuickfixWindowDown
+    autocmd!
+    autocmd FileType qf wincmd J
+augroup end
+
+nnoremap <Leader>a : Ack 
+
+""""""""""""""""""""""""""""""""""""
+" AyncRun
+""""""""""""""""""""""""""""""""""""
+
+autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
+
+""""""""""""""""""""""""""""""""""""
+" Eclim
+""""""""""""""""""""""""""""""""""""
+
+"autocmd FileType java setlocal omnifunc=javacomplete#Complete  " javaautocomplete2
+
+"let g:EclimCompletionMethod = 'omnifunc'
+"let g:JSHintHighlightErrorLine = 0
+
+" If you want :UltiSnipsEdit to split your window.
+"let g:UltiSnipsEditSplit="vertical"

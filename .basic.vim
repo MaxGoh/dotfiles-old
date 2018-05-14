@@ -1,3 +1,19 @@
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
+imap jk <Esc>
+vmap jk <Esc>
+
+map <S-Enter> O<Esc>
+nmap <CR> o<Esc>
+
+"
+
+let g:python2_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
+
 set nocompatible        " don't use old settings that vi used.  
 						" Use the newer features that vim offers
 
@@ -41,7 +57,7 @@ nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
 set backspace=2       	" make backspace able to go over end of lines
-set laststatus=2    	" always show the status line
+"set laststatus=2    	" always show the status line
 set t_Co=256        	" set colors to 256
 set mousehide       	" hide mouse cursor while typing
 set showmode        	" display the current mode
@@ -101,4 +117,11 @@ set smarttab      " insert tabs on the start of a line according to
                     "    shiftwidth, not tabstop
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
+
+nnoremap <S-j> :m .+1<CR>==
+"nnoremap <S-k> :m .-2<CR>==
+"inoremap <S-j> <Esc>:m .+1<CR>==gi
+"inoremap <S-k> <Esc>:m .-2<CR>==gi
+"vnoremap <S-j> :m '>+1<CR>gv=gv
+"vnoremap <S-k> :m '<-2<CR>gv=gv
 

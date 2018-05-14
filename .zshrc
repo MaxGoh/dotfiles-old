@@ -2,12 +2,12 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/pickandmix/.oh-my-zsh
+export ZSH=/Users/maxgoh/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="duellj"
+ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -51,7 +51,7 @@ ZSH_THEME="duellj"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git osx vi-mode wd sudo brew docker)
+plugins=(git wd sudo vi-mode mercurial zsh-iterm-touchbar)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -83,46 +83,39 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
 alias vim="nvim"
-
-export VIMPLUGIN="~/.plugin.vim"
-export VIMBASIC="~/.basic.vim"
-
-alias ez="nvim ~/.zshrc"
-alias ev="nvim ~/.vimrc"
-alias eb="nvim ~/.basic.vim"
+alias et="nvim ~/.tmux.conf"
+alias dbmax="mysql -u maxgoh -p max -h max-ai.cwnnahoekdn0.ap-southeast-1.rds.amazonaws.com"
+alias gitk='"$(brew --prefix tcl-tk)/bin/wish" "$(which gitk)"'
+#alias eb="nvim ~/.basic.vim"
 alias ep="nvim ~/.plugin.vim"
-alias el="nvim ~/.language.vim"
-
-alias es="nvim ~/.ssh/config"
+alias ez="nvim ~/.zshrc"
 alias et="nvim ~/.tmux.conf"
 
-alias st="tmux source-file ~/.tmux.conf"
-alias logvim="vim -V20vimlog"
+PROMPT='${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)$(hg_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+ZSH_THEME_HG_PROMPT_PREFIX="%{$fg_bold[magenta]%}hg:(%{$fg[red]%}"
+ZSH_THEME_HG_PROMPT_SUFFIX="%{$reset_color%}"
+ZSH_THEME_HG_PROMPT_DIRTY="%{$fg[magenta]%}) %{$fg[yellow]%}✗%{$reset_color%}"
+ZSH_THEME_HG_PROMPT_CLEAN="%{$fg[magenta]%})"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+GIT_UNCOMMITTED="+"
+GIT_UNSTAGED="!"
+GIT_UNTRACKED="?"
+GIT_STASHED="$"
+GIT_UNPULLED="⇣"
+GIT_UNPUSHED="⇡"
 
-alias copyssh="cat ~/.ssh/id_rsa.pub | pbcopy"
-#export PATH="$HOME/.fastlane/bin:$PATH"
-alias c="clear"
-# set java home (Attention: mac osx only!)
-export JAVA_HOME=$(/usr/libexec/java_home)
-export ANDROID_HOME="/Users/pickandmix/Library/android/sdk"
+YARN_ENABLED=true
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-#export PATH="$PATH:$HOME/.rvm/bin"
+# load virtualenvwrapper for python (after custom PATHs)
+venvwrap="virtualenvwrapper.sh"
+/usr/bin/which -s $venvwrap
+if [ $? -eq 0 ]; then
+    venvwrap=`/usr/bin/which $venvwrap`
+    source $venvwrap
+fi
 
-# Ionic
-alias config='/usr/bin/git --git-dir=/Users/pickandmix/.cfg/ --work-tree=/Users/pickandmix'
-export PATH="$HOME/.fastlane/bin:$PATH"
-
-if [ -z $TMUX ]; then; tmux; fi
-
-export WORKON_HOME=~/Envs
-source /usr/local/bin/virtualenvwrapper.sh
-source /usr/local/opt/autoenv/activate.sh
-alias chinab='nc -nlvp 1337'
-
+export PATH="$HOME/.yarn/bin:$PATH"

@@ -65,6 +65,7 @@ source $ZSH/oh-my-zsh.sh
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
+    export editor=/usr/local/bin/nvim
 # else
 #   export EDITOR='mvim'
 # fi
@@ -91,6 +92,15 @@ alias gitk='"$(brew --prefix tcl-tk)/bin/wish" "$(which gitk)"'
 alias ep="nvim ~/.plugin.vim"
 alias ez="nvim ~/.zshrc"
 alias et="nvim ~/.tmux.conf"
+alias slack="cd ~/github/terminal-slack && node main.js"
+alias c="clear"
+
+alias ga="git add"
+alias gaa="git add ."
+alias gd="git diff"
+alias gc="git commit"
+alias gp="git push"
+alias gs="git status"
 
 PROMPT='${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)$(hg_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
 ZSH_THEME_HG_PROMPT_PREFIX="%{$fg_bold[magenta]%}hg:(%{$fg[red]%}"
@@ -107,8 +117,10 @@ GIT_UNPUSHED="⇡"
 
 YARN_ENABLED=true
 
+
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export SLACK_TOKEN="xoxp-167473182278-362962674611-374549069538-aa7fee62303ae745e72935985375be6f"
 
 # load virtualenvwrapper for python (after custom PATHs)
 venvwrap="virtualenvwrapper.sh"

@@ -1,6 +1,7 @@
 let g:airline#highlighter#normal_fg_hi = 7
 
-"iMGf empty(glob('Go~/.config/nvim/autoload/plug.vim'))
+
+"empty(glob('Go~/.config/nvim/autoload/plug.vim'))
 "  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
 "	  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "sync  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -12,6 +13,7 @@ let g:airline#highlighter#normal_fg_hi = 7
 " call plug#begin('~/.vim/plugged')
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'stephpy/vim-yaml'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
@@ -26,6 +28,7 @@ Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'mileszs/ack.vim'           " Read up
 Plug 'raimondi/delimitmate'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 "Plug 'rking/ag.vim'              " Read up
 Plug 'tpope/vim-sensible'
 Plug 'octref/rootignore'
@@ -46,6 +49,20 @@ Plug 'skwp/greplace.vim'
 Plug 'jeetsukumaran/vim-buffergator'
 "Plug 'fweep/vim-tabber'
 Plug 'gcmt/taboo.vim'  " May break airline tabline
+"Plug 'malithsen/trello-vim'
+Plug 'freitass/todo.txt-vim'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'chrisbra/colorizer'
+
+" Org-mode
+Plug 'jceb/vim-orgmode'
+Plug 'vim-scripts/utl.vim'
+Plug 'tpope/vim-repeat'
+Plug 'vim-scripts/taglist.vim'
+Plug 'tpope/vim-speeddating'
+Plug 'chrisbra/nrrwrgn'
+Plug 'itchyny/calendar.vim'
+Plug 'vim-scripts/SyntaxRange'
 
 " Typescript
 Plug 'quramy/tsuquyomi'
@@ -181,6 +198,7 @@ let g:NERDTreeIndicatorMapCustom = {
 
 "let NERDTreeIgnore = ['\.pyc$', '__pycache__'] " clean
 "let NERDTreeIgnore = ['\.pyc$', '__pycache__', 'public', 'node_modules', 'git', 'venv'] "focus
+"let NERDTreeIgnore = ['\.pyc$', '__pycache__', 'node_modules', 'git', 'venv', '\.class$', 'public', 'build'] "focus
 let NERDTreeIgnore = ['\.pyc$', '__pycache__', 'node_modules', 'git', 'venv', '\.class$'] "focus
 let NERDTreeMinimalUI=1
 
@@ -198,7 +216,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#switch_buffers_and_tabs = 1
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'wombat'
+let g:airline_theme = 'badwolf'
 
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
@@ -258,9 +276,9 @@ autocmd QuickFixCmdPost *grep* cwindow
 
 "colorscheme blacksea
 "colorscheme distinguished
-"colorscheme monokai
+colorscheme monokai
 "colorscheme 0x7A69_dark
-colorscheme base 
+"colorscheme base
 "colorscheme badwolf
 set background=dark
 
@@ -382,17 +400,14 @@ let g:jsx_ext_required = 1
 " Ale / Syntastic
 """"""""""""""""""""""""""""""""""""
 
-"let g:syntastic_javascript_checkers=['eslint']
+let g:ale_echo_msg_format = '%linter% says %s'
+"let b:ale_linters = ['eslint']
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_javascript_jshint_use_global = 0
 
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
-
-let g:ale_fixers = [
-\ 'eslint',
-\ 'remove_trailing_lines',
-\ {buffer, lines -> filter(lines, 'v:val !=~ ''^\s*//''')},
-\]
 
 """"""""""""""""""""""""""""""""""""
 " CTRL-P
@@ -406,7 +421,8 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 let g:javascript_plugin_jsdoc = 1
 "let g:jsdoc_allow_input_prompt = 1
-"let g:jsdoc_input_description = 1
+
+let g:jsdoc_input_description = 1
 let g:jsdoc_underscore_private = 1
 let g:jsdoc_enable_es6 = 1
 
@@ -471,3 +487,66 @@ autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --
 
 " If you want :UltiSnipsEdit to split your window.
 "let g:UltiSnipsEditSplit="vertical"
+
+let g:prettier#autoformat = 2
+let g:prettier#config#trailing_comma = 'none'
+
+" print semicolons
+let g:prettier#config#semi = 'false'
+
+" single quotes over double quotes
+let g:prettier#config#single_quote = 'true'
+
+" number of spaces per indentation level
+let g:prettier#config#tab_width = 2
+
+" use tabs over spaces
+let g:prettier#config#use_tabs = 'false'
+
+let g:prettier#config#arrow_parens = 'avoid'
+
+"let g:prettier#config#parser = 'babylon'
+
+"autocmd BufWritePre *.jsx,*.js,*.json,*.css,*.scss,*.less,*.graphql Prettier
+let g:one_allow_italics = 1
+
+"hi htmlArg gui=italic
+"hi htmlArg cterm=italic
+"hi Comment gui=italic
+"hi Comment cterm=italic
+"hi Type    gui=italic
+"hi Type    cterm=italic
+highlight htmlArg cterm=italic
+
+""""""""""""""""""""""""""""""""""""
+" Calendar.vim
+""""""""""""""""""""""""""""""""""""
+
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
+
+
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
